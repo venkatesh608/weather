@@ -49,7 +49,7 @@ exports.getPastWeekWeatherForLocation = function(req, res) {
         // post invoke processing with response body
         if (!error && response.statusCode == 200) {      
           logger.debug('successfully processed weather request for: '+ coordinates);   
-          output[timestamp]  =  JSON.parse(response.body); 
+          output[moment.unix(timestamp).format("MM/DD/YYYY")]  =  JSON.parse(response.body); 
           outputJson.push(output); 
           //logger.debug('output: '+ JSON.stringify(output)); 
           //logger.debug('outputJson: '+ JSON.stringify(outputJson)); 

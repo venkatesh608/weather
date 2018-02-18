@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: weather-deployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels: # labels to select/identify the deployment
+        app: weather  
+    spec:     # pod spec                  
+      containers: 
+      - name: weather-image
+        image: gcr.io/weather-195622/weather-image:v1 # image we pushed
+        ports:
+        - containerPort: 3000
