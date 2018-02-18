@@ -1,2 +1,2 @@
 # weather
-nodejs service to display weather based on a location test
+nodejs service to display weather based on a location
