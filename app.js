@@ -10,6 +10,10 @@ app.get('/weather/:coordinates', function(req, res) {
   weatherLib.getWeatherForLocation(req,res);
 });
 
+app.get('/weather/pastweek/:coordinates', function(req, res) {
+  weatherLib.getPastWeekWeatherForLocation(req,res);
+});
+
 app.listen(3000, function() {
   logger.info('Started app on port 3000')
 });
