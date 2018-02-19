@@ -5,13 +5,21 @@ A nodejs micro service to display past week's weather information based on a loc
 
 This micro service is hosted on google cloud cluster running on top of kubernetes.
 
-# Below are the endpoints available for testing:
+# Endpoints for testing:
 
 1. To display past one week's weather information from today based on a location
 
+http://{host}:{port}/weather/pastweek/42.3601,-71.0589
+
+this app running at:
 http://35.188.219.158:3000/weather/pastweek/42.3601,-71.0589
 
+
 2. To get today's weather information
+
+http://{host}:{port}/weather/42.3601,-71.0589
+
+this app running at:
 http://35.188.219.158:3000/weather/42.3601,-71.0589
 
 # Testing
