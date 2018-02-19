@@ -75,6 +75,7 @@ Development setup
 
 # Deploy NodeJs docker app onto kubernetes on google cloud
 =============
+
 # cd to location where your clone "weather" app resides.
 	$cd weather
 # Install Google Cloud SDK
