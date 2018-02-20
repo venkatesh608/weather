@@ -5,7 +5,6 @@ var async = require("async");
 var SECRET_KEY = 'bfe5bce5ea1ea58c3c8f126866983cea';
 
 exports.getWeatherForLocation = function(req, res) {
-  console.log("lastWeekTimestamps::" + lastWeekTimestamps); 
   logger.debug('calling getWeatherForLocation......');
   var coordinates = req.params.coordinates;
   //darksky api url to hit
