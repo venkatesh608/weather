@@ -11,16 +11,16 @@ This micro service is hosted on google cloud cluster running on top of kubernete
 
 http://{host}:{port}/weather/pastweek/42.3601,-71.0589
 
-this app running at:
-http://35.188.219.158:3000/weather/pastweek/42.3601,-71.0589
+My app from google cloud running at:
+http://35.226.191.211:3000/weather/pastweek/42.3601,-71.0589
 
 
 2. To get today's weather information
 
 http://{host}:{port}/weather/42.3601,-71.0589
 
-this app running at:
-http://35.188.219.158:3000/weather/42.3601,-71.0589
+My app from google cloud running at:
+http://35.226.191.211:3000/weather/42.3601,-71.0589
 
 # Testing
 Use POSTMAN/REST client to test:
