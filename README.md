@@ -111,8 +111,7 @@ Development setup
 # Check logs for the pods
 	$ kubectl logs {pod-name}
 # Create kubernetes service to expose the nodeJs service to internet
-As the VM's are behind the internet, we need ELB to expose them
-	$ kubectl expose deployment weather-deployment --type="LoadBalancer"
+	$kubectl expose deployment weather-deployment --type="LoadBalancer"
 # Access kunerneted service: to get the external ip
 	$kubectl get services
 # Visit http://{EXTERNAL-IP}:{PORT}/{path} to access the service
