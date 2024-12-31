@@ -1,0 +1,11 @@
+Best Practices for Tagging Resources in AWS (Whitepaper) – Good Read
+Use AWS Config Required Tags feature to visualize and extract a report for compliant and non-compliant resources, recommendation is to start simple. (How to do here)
+Implement Tagging strategy using Tag Policies (Blogpost with details here) and AWS official documentation on getting started here.
+
+https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html
+https://catalog.workshops.aws/tagging/en-US/5-config/1-config-req
+https://aws.amazon.com/blogs/mt/implement-aws-resource-tagging-strategy-using-aws-tag-policies-and-service-control-policies-scps/
+https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-getting-started.html
+
+SCAD
+https://catalog.workshops.aws/awscid/en-US/dashboards/additional/scad-containers-cost-allocation
