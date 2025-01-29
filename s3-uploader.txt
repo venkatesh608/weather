@@ -17,19 +17,28 @@ To create an AWS IAM user with **write access to a specific S3 bucket** but no a
 
      ```json
      {
-       "Version": "2012-10-17",
-       "Statement": [
-         {
-           "Sid": "AllowS3WriteAccess",
-           "Effect": "Allow",
-           "Action": [
-             "s3:PutObject",
-             "s3:PutObjectAcl"
-           ],
-           "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
-         }
-       ]
-     }
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowS3WriteAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectAcl"
+      ],
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*"
+    },
+    {
+      "Sid": "AllowS3ListAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME"
+    }
+  ]
+}
+
      ```
 
      Replace `YOUR_BUCKET_NAME` with the name of your S3 bucket.
