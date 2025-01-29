@@ -1,3 +1,24 @@
+pre signed url bucket policy
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPreSignedURLUpload",
+      "Effect": "Allow",
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::YOUR_BUCKET_NAME/*",
+      "Condition": {
+        "StringEquals": {
+          "aws:RequestTag/s3:RequestType": "PreSignedURL"
+        }
+      }
+    }
+  ]
+}
+
+
+===============
 To create an AWS IAM user with **write access to a specific S3 bucket** but no access to any other resources in your AWS account, follow these steps:
 
 ### Steps to Create the IAM User and Policy
