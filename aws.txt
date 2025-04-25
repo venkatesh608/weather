@@ -1,11 +1,70 @@
-Best Practices for Tagging Resources in AWS (Whitepaper) – Good Read
-Use AWS Config Required Tags feature to visualize and extract a report for compliant and non-compliant resources, recommendation is to start simple. (How to do here)
-Implement Tagging strategy using Tag Policies (Blogpost with details here) and AWS official documentation on getting started here.
+A **QA (Quality Assurance)** job role during API and UI development by the app team typically involves making sure that everything being built works correctly, meets the requirements, and is free of bugs. Here's a breakdown of what a QA person usually does in this context:
 
-https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/tagging-best-practices.html
-https://catalog.workshops.aws/tagging/en-US/5-config/1-config-req
-https://aws.amazon.com/blogs/mt/implement-aws-resource-tagging-strategy-using-aws-tag-policies-and-service-control-policies-scps/
-https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-getting-started.html
+---
 
-SCAD
-https://catalog.workshops.aws/awscid/en-US/dashboards/additional/scad-containers-cost-allocation
+### **1. Understanding Requirements**
+- Review **API documentation** (like Swagger) and **UI designs/wireframes** to understand what’s expected.
+- Ensure that test cases cover all requirements.
+
+---
+
+### **2. Test Planning & Design**
+- Write **test cases** for both **APIs** and **UI flows** based on the requirements.
+- Use tools like Postman or Swagger for API test cases.
+- Define what to test: functional, negative, edge cases, etc.
+
+---
+
+### **3. API Testing**
+- Test APIs for:
+  - **Correct responses**
+  - **Status codes** (200, 400, 500, etc.)
+  - **Data validation**
+  - **Authentication/authorization**
+  - **Performance**
+- Use tools like:
+  - **Postman**
+  - **SoapUI**
+  - **JMeter** (for load testing)
+  - **Automation frameworks** (like RestAssured or Karate)
+
+---
+
+### **4. UI Testing**
+- Test the UI for:
+  - Correct data binding from APIs
+  - Usability and user experience
+  - Layout/responsiveness
+  - Navigation flows
+  - Form validation
+- Use tools like:
+  - Manual testing (click-through)
+  - Selenium, Cypress, Playwright (for automation)
+
+---
+
+### **5. Defect Reporting**
+- Log bugs in tools like **JIRA** or **Bugzilla**
+- Include steps to reproduce, screenshots/videos, and logs.
+
+---
+
+### **6. Regression & Retesting**
+- Retest after fixes.
+- Run **regression tests** to make sure new code didn’t break existing functionality.
+
+---
+
+### **7. Collaboration**
+- Work closely with developers, product managers, and designers.
+- Participate in standups, sprint planning, and retrospectives.
+
+---
+
+### Optional (Advanced QA Roles):
+- Set up **CI/CD integration** for automated test runs.
+- Monitor backend logs or use tools like **Charles Proxy** or **Fiddler** to inspect traffic.
+
+---
+
+Let me know if you want a sample day-to-day task list or a resume-style version of this.
