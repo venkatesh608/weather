@@ -1,0 +1,176 @@
+my policy statement is reaching the size limit for secrets manager vpc endpoint . can i have multiple vpc endpoints for same secrets manager managing different policies in each endpoint?
+
+Yes — you can absolutely have **multiple VPC interface endpoints for Secrets Manager** in the same VPC, each with its **own policy**, and use them to enforce different access rules.
+
+Here’s the key points:
+
+---
+
+## **1. How It Works**
+
+* Each **VPC interface endpoint** for Secrets Manager gets:
+
+  * Its own ENIs in your subnets
+  * Its own **endpoint policy** (resource-based policy attached to that endpoint)
+* You can make **multiple endpoints for the same service** in:
+
+  * The **same VPC**
+  * Different subnets or even overlapping subnets
+
+---
+
+## **2. Why This Solves Your Problem**
+
+Since the policy size limit (20,480 characters) applies **per endpoint**, splitting into multiple endpoints means:
+
+* Endpoint A → Policy for group 1 of secrets / accounts
+* Endpoint B → Policy for group 2
+* Endpoint C → Policy for group 3
+  … and so on.
+
+---
+
+## **3. Considerations**
+
+* **Cost**: Each interface endpoint has an hourly cost + data processing charges.
+* **DNS**: By default, AWS DNS will route `secretsmanager.<region>.amazonaws.com` to *one* of your endpoints.
+
+  * If you want different workloads to use different endpoints, you’ll need to **control DNS resolution** (e.g., using private hosted zones, custom CNAMEs, or disabling `Private DNS` on the endpoint and pointing apps directly to the endpoint-specific DNS name).
+* **IAM/resource policies still apply**: Even if your endpoint policy allows something, the IAM principal and resource policy must also allow it.
+
+---
+
+## **4. Example Setup**
+
+Let’s say you have:
+
+* **Team A** only needs access to secrets with prefix `prod/team-a/*`
+* **Team B** only needs access to secrets with prefix `prod/team-b/*`
+
+You can create:
+
+1. **VPCE A** → Policy allowing only `arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/team-a/*`
+2. **VPCE B** → Policy allowing only `arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/team-b/*`
+
+Then point each team’s workloads to their respective VPCE DNS name.
+
+---
+
+If you want, I can give you a **DNS routing plan** showing how to make multiple endpoints for Secrets Manager work cleanly in the same VPC without them stepping on each other. That’s the tricky part most people hit.
+===================  yes please provide dns routing plan
+
+
+
+Alright — here’s how to set up **multiple Secrets Manager VPC endpoints** with different policies, and make sure workloads use the correct one via DNS routing.
+
+---
+
+## **1. The DNS Challenge**
+
+By default:
+
+* When you enable **Private DNS** on an interface endpoint,
+  AWS overrides the public name `secretsmanager.<region>.amazonaws.com` in your VPC’s DNS resolver so it points to *that* endpoint.
+* If you have multiple endpoints with Private DNS **enabled**, only **one** wins (the most recently created or updated one).
+
+So… to route traffic to the right endpoint, you can’t have Private DNS enabled on all of them.
+
+---
+
+## **2. Solution Overview**
+
+We’ll use:
+
+* **One endpoint with Private DNS** (optional — for default usage)
+* Other endpoints with **Private DNS disabled**
+* **Custom DNS records** (e.g., `secrets-team-a.example.internal`) pointing to the DNS name for the specific endpoint.
+
+---
+
+## **3. Step-by-Step Plan**
+
+### **Step 1 — Create Multiple Secrets Manager Endpoints**
+
+For example:
+
+* **vpce-team-a** (Private DNS **disabled**)
+* **vpce-team-b** (Private DNS **disabled**)
+* **vpce-default** (Private DNS **enabled**) — optional, if you want a catch-all
+
+---
+
+### **Step 2 — Find the Endpoint-Specific DNS Names**
+
+Each endpoint gets an **AWS-provided DNS name** like:
+
+```
+vpce-0123456789abcdef0-secretsmanager.us-east-1.vpce.amazonaws.com
+```
+
+You can find this in:
+
+* **AWS Console** → VPC → Endpoints → *Your Endpoint* → **Details** tab
+* Or AWS CLI:
+
+```bash
+aws ec2 describe-vpc-endpoints \
+  --vpc-endpoint-ids vpce-0123456789abcdef0 \
+  --query 'VpcEndpoints[0].DnsEntries'
+```
+
+---
+
+### **Step 3 — Create a Private Hosted Zone in Route 53**
+
+* Create a **Private Hosted Zone** for your internal domain (e.g., `internal.example.com`) associated with your VPC.
+* Create **A or CNAME records** in the PHZ for each team:
+
+Example records:
+
+| Name                      | Type  | Value                                                                |
+| ------------------------- | ----- | -------------------------------------------------------------------- |
+| `secrets-team-a.internal` | CNAME | `vpce-0123456789abcdef0-secretsmanager.us-east-1.vpce.amazonaws.com` |
+| `secrets-team-b.internal` | CNAME | `vpce-0fedcba9876543210-secretsmanager.us-east-1.vpce.amazonaws.com` |
+
+---
+
+### **Step 4 — Configure Workloads to Use the Right Host**
+
+In each team’s application configuration or SDK:
+
+```plaintext
+AWS_SECRETS_MANAGER_ENDPOINT=https://secrets-team-a.internal
+```
+
+or
+
+```plaintext
+AWS_SECRETS_MANAGER_ENDPOINT=https://secrets-team-b.internal
+```
+
+AWS SDKs will respect the endpoint override if provided.
+
+---
+
+## **4. Visual Flow**
+
+```
+[EC2 / Lambda / ECS Task] → DNS Query
+   - secrets-team-a.internal → vpce-team-a DNS → VPCE-A → Secrets Manager
+   - secrets-team-b.internal → vpce-team-b DNS → VPCE-B → Secrets Manager
+```
+
+---
+
+## **5. Notes & Best Practices**
+
+* **Security**: Each endpoint should have a tight endpoint policy for only the resources that workload needs.
+* **Cost**: Each Secrets Manager interface endpoint costs hourly + per GB processed.
+* **Failover**: If you want redundancy, you can create multiple endpoints per AZ for the same team and adjust DNS records.
+* **IAM still applies**: Even with endpoint policies, the principal’s IAM permissions must also allow the action.
+
+---
+
+If you want, I can also make you a **diagram showing how two teams use separate Secrets Manager VPC endpoints with custom DNS routing** — makes it super clear how traffic flows.
+
+
