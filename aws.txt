@@ -1,3 +1,5 @@
+https://grok.com/s/bGVnYWN5LWNvcHk%3D_10d17d81-aa3f-4f36-ba32-d13fc70399df
+
 A **QA (Quality Assurance)** job role during API and UI development by the app team typically involves making sure that everything being built works correctly, meets the requirements, and is free of bugs. Here's a breakdown of what a QA person usually does in this context:
 
 ---
