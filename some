@@ -1,0 +1,10 @@
+What we use Databricks for / org needs:
+Unified platform to run large-scale data processing (ETL/ELT) using Spark.
+Central place for data pipelines, transformations, and analytics across teams.
+Collaborative workspace for notebooks, jobs, workflows, and ML experimentation.
+Reliable + scalable compute for integrating data from multiple sources into curated datasets.
+What a Data Engineer does daily in Databricks:
+Build and maintain ETL pipelines using notebooks, workflows, and Spark.
+Optimize jobs for performance/cost and monitor scheduled workflows.
+Manage data quality, schema evolution, and table structures (Delta Lake).
+Collaborate with analysts/scientists by providing cleaned, production-ready datasets.
