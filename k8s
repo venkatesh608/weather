@@ -1,0 +1,130 @@
+
+
+
+
+========
+
+Flux CD
+Kustomize
+Istio
+VirtualService
+DestinationRule
+Gateway
+ServiceEntry
+AuthorizationPolicy
+PeerAuthentication
+ProxyConfig
+Kyverno
+SealedSecret
+Argo Rollouts
+Rollout
+ServiceMonitor
+Prometheus Operator
+OpenTelemetry
+OpenTelemetryCollector
+VerticalPodAutoscaler
+HorizontalPodAutoscaler
+Cluster Autoscaler
+cert-manager
+Certificate
+Issuer
+ClusterIssuer
+Renovate
+AWS Load Balancer Controller
+external-dns
+AWS EBS CSI
+AWS EFS CSI
+
+
+=================================
+
+
+EKS/Kubernetes infrastructure 
+
+Argo rollout
+Istio  
+Cluster migration - plugins challenges
+cluster consolidation
+KNative 
+FluxCD 
+BottlerocketOS / recent changes
+Kyverno 
+Shell Operator 
+K8s build/test infrastructure 
+ECR Image Archival 
+FeatureBox on EKS
+AWS EBS CSI 
+AWS LB Controller 
+cert-manager 
+Cluster Autoscaler 
+csi-snapshot-controller 
+External DNS 
+Kube-state-metrics 
+Kube-storage-version-migrator 
+Kubemod 
+Metrics-server 
+Open Telemetry infra 
+Platform operator 
+Sealed secrets 
+Vertical Pod Autoscaler 
+
+Deployment Actuation
+
+Renovate 
+
+Security 
+
+MTLS/Private CA infrastructure 
+AWS PCA
+
+NeoBanking 
+
+CloudFront 
+VPC network  
+Background Tasks (Chance) 
+NB PCI Environment 
+bankctl 
+cc-api 
+cc-ui 
+Stronghold elements 
+Stronghold 
+D20-sftp – metabank/galileo integrations 
+Galileo-events 
+Galileo-events-entrypoint 
+Galileo-iap 
+Mastermind-go-rdf 
+
+DNS 
+PCI Build Infra 
+Monolith build cluster 
+Universal Webhooks
+
+Terraform 
+
+Okta 
+AWS 
+MongoDB 
+Tf-cloud-agent 
+workspaces
+modules
+
+Dev Ex 
+
+SNOW / Rootly
+StrongDM
+Mongostats 
+Other: 
+1password-scim bridge 
+Related/Spheres of influence 
+
+AWS management/strategy
+CI/CD
+NB ACH Infrastructure 
+CloudFlare Tunnels 
+D1/D2 accounting services 
+Digit-web/digit-admin/digit-background-tasks/vault-background-tasks deployments 
+KServe (dead?) 
+Sms-router (Dead?) (Should remove – Chance) 
+Sonarqube (Dead?) 
+Stonecastle FDIC feed 
+Triage bot (Dead?) (Should remove – Chance)
